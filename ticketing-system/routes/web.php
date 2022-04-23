@@ -17,11 +17,12 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 Route::get('/about', function () {
-    return view('pages.about');
+    return view('layouts.about');
 });
-// Route::get('/welcome', function () {
-//     return view('pages.about');
-// });
+
+Route::get('/login', function () {
+    return view('layouts\auth\login');
+});
 
 
 Route::get('/app', function () {

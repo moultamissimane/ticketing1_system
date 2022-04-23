@@ -3,6 +3,11 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\QuestionsController;
+use App\Http\Controllers\ResponseController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AuthController;
+
 
 
 /*
@@ -20,8 +25,8 @@ use App\Http\Controllers\UserController;
 
 // public routes
 
-Route::post('/account/register', [UserController::class, 'store']);
-Route::post('/account/login', [UserController::class, 'index']);
+Route::post('/auth/register', [UserController::class, 'store']);
+Route::post('/auth/login', [UserController::class, 'index']);
 
 
 // Route::post('/register', [AuthController::class, 'register']);
@@ -33,10 +38,10 @@ Route::post('/account/login', [UserController::class, 'index']);
 
 // protected routes
 Route::group(['middleware'=>['auth:sanctum']], function () {   
-    Route::get('/account/user', [UserController::class, 'show']);
-    Route::delete('/account/logout', [UserController::class, 'delete']);
+    Route::get('/user', [UserController::class, 'show']);
+    Route::delete('/auth/logout', [UserController::class, 'delete']);
     
-    Route::get('/user/questions', [UserController::class, 'questions']);
+    Route::get('/questions', [AuthController::class, 'questions']);
     Route::delete('/questions/{id}', [QuestionsController::class, 'delete']);
     Route::get('/questions', [QuestionsController::class, 'show']);
     Route::get('/questions/{id}', [QuestionsController::class, 'find']);
